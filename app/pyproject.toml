@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "narvi-task"
+version = "0.1.0"
+description = "API for grouping names and managing created groups."
+authors = ["Damian Pomykała <168227269+dpomykala@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+django = "^5.1.2"
+djangorestframework = "^3.15.2"
+drf-spectacular = "^0.27.2"
+requests = "^2.32.3"
+
+[tool.ruff]
+src = ["app"]
+
+[tool.ruff.lint]
+select = [
+    "I",  # isort
+]
+
+[tool.ruff.lint.isort]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "django",  # Custom section
+    "first-party",
+    "local-folder",
+]
+no-lines-before = ["local-folder"]
+combine-as-imports = true
+force-wrap-aliases = true
+known-first-party = ["words"]
+
+[tool.ruff.lint.isort.sections]
+"django" = ["django"]  # Group all Django imports into a separate section
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
